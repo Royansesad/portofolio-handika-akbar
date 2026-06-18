@@ -100,6 +100,12 @@ export const Desktop = (): JSX.Element => {
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [formMessage, setFormMessage] = useState("");
+  const [activeProject, setActiveProject] = useState<{
+    title: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+  } | null>(null);
 
   /* ---- Refs ---- */
   const hcaptchaContainerRef = useRef<HTMLDivElement>(null);
@@ -112,13 +118,32 @@ export const Desktop = (): JSX.Element => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ---- Lock body when mobile menu is open ---- */
+  /* ---- Lock body when mobile menu or project preview is open ---- */
   useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    if (mobileMenuOpen || activeProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, activeProject]);
+
+  /* ---- Close lightbox on Escape key ---- */
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveProject(null);
+      }
+    };
+    if (activeProject) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeProject]);
 
   /* ---- Intersection Observer for scroll-reveal ---- */
   useEffect(() => {
@@ -579,6 +604,7 @@ export const Desktop = (): JSX.Element => {
                     </div>
                     <button
                       type="button"
+                      onClick={() => setActiveProject(project)}
                       aria-label={`Preview ${project.title}`}
                       className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-gray-50 hover:bg-green-50 border border-transparent hover:border-green-200 transition-all duration-300 group-hover:rotate-12"
                     >
@@ -838,6 +864,60 @@ export const Desktop = (): JSX.Element => {
           </p>
         </div>
       </footer>
+
+      {/* ============================================================ */}
+      {/*  LIGHTBOX MODAL                                              */}
+      {/* ============================================================ */}
+      {activeProject && (
+        <div
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md transition-all duration-300 animate-lightbox-backdrop"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setActiveProject(null)}
+        >
+          {/* Close button */}
+          <button
+            onClick={() => setActiveProject(null)}
+            className="absolute top-6 right-6 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white flex items-center justify-center hover:scale-105 hover:rotate-90 transition-all duration-300 active:scale-95 cursor-pointer"
+            aria-label="Close image popup"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          {/* Modal Container */}
+          <div
+            className="relative max-w-[90vw] max-h-[85vh] flex flex-col items-center justify-center p-2 animate-lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={activeProject.image}
+              alt={activeProject.imageAlt}
+              className="max-w-full max-h-[72vh] rounded-xl object-contain shadow-2xl border border-white/10"
+            />
+            {/* Caption */}
+            <div className="mt-5 text-center text-white max-w-[80vw]">
+              <h3 className="[font-family:'Inter',Helvetica] font-semibold text-lg sm:text-xl md:text-2xl">
+                {activeProject.title}
+              </h3>
+              <p className="mt-1.5 [font-family:'Inter',Helvetica] font-medium text-white/60 text-xs sm:text-sm md:text-base">
+                {activeProject.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ============================================================ */}
       {/*  SCROLL-TO-TOP BUTTON                                         */}

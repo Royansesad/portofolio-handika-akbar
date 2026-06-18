@@ -201,3 +201,32 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ========== Lightbox Animations ========== */
+@keyframes lightbox-backdrop-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lightbox-image-scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-lightbox-backdrop {
+  animation: lightbox-backdrop-fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-lightbox-image {
+  animation: lightbox-image-scale-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
