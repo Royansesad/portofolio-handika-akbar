@@ -447,7 +447,7 @@ export const Desktop = (): JSX.Element => {
               {/* Bottom Right: Role */}
               <div className="absolute right-[5%] bottom-[35%] z-[3] text-right">
                 <h2
-                  className="animate-hero-text [font-family:'Inter',Helvetica] font-bold text-3xl sm:text-4xl leading-tight [text-shadow:2px_2px_15px_rgba(255,255,255,0.50),0_0_25px_rgba(255,255,255,0.8),-2px_-2px_15px_rgba(255,255,255,0.95)]"
+                  className="animate-hero-text [font-family:'Inter',Helvetica] font-bold text-3xl sm:text-4xl leading-tight [text-shadow:2px_2px_15px_rgba(255,255,255,0.50),0_0_25px_rgba(255,255,255,0.5),-2px_-2px_15px_rgba(255,255,255,0.40)]"
                   style={{ animationDelay: "0.5s" }}
                 >
                   WEB<br />UI/UX<br />DESIGNER
