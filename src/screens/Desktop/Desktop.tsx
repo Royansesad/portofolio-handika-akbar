@@ -381,7 +381,7 @@ export const Desktop = (): JSX.Element => {
           <div className="h-20 lg:h-24 flex-shrink-0" />
 
           {/* WELCOME watermark — behind everything */}
-          <div className="absolute top-[90px] lg:top-[10px] left-1/2 -translate-x-1/2 animate-welcome [font-family:'Lexend_Giga',Helvetica] font-bold text-black/[0.07] text-[clamp(3rem,13vw,12rem)] whitespace-nowrap select-none pointer-events-none z-[1]">
+          <div className="absolute top-[90px] lg:top-[10px] left-1/2 -translate-x-1/2 animate-welcome [font-family:'Lexend_Giga',Helvetica] font-bold text-black/[0.07] text-[clamp(3.5rem,13vw,12rem)] whitespace-nowrap select-none pointer-events-none z-[1]">
             WELCOME
           </div>
 
@@ -389,28 +389,28 @@ export const Desktop = (): JSX.Element => {
           <div className="relative flex-1 flex flex-col lg:block">
 
             {/* ---- MOBILE/TABLET layout (< lg) — overlapping ---- */}
-            <div className="lg:hidden relative w-full min-h-[calc(100vh-5rem)] pb-10">
+            <div className="lg:hidden relative w-full min-h-[calc(100vh-0rem)] pb-10">
               {/* Portrait — centered, absolute, larger, aligned to top */}
-              <div className="absolute inset-x-0 top-0 bottom-0 flex items-start justify-center pt-[2%] z-[2] pointer-events-none">
+              <div className="absolute inset-x-0 -top-20 bottom-0 flex items-start justify-center pt-[2%] z-[2] pointer-events-none">
                 <img
                   src="https://c.animaapp.com/NPodFjaQ/img/ff139437-4e04-4201-8092-fc1a18bee5e1-1.png"
                   alt="Portrait of Handika Akbar"
-                  className="animate-hero-image h-[82vh] min-h-[560px] max-w-[92vw] w-auto object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.10)]"
+                  className="animate-hero-image h-[92vh] min-h-[630px] max-w-[150vw] w-auto object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.10)]"
                 />
               </div>
 
               {/* Text elements overlapping the photo */}
               {/* Top Left: Name */}
-              <div className="absolute left-[6%] top-[20%] z-[3]">
+              <div className="absolute left-[6%] top-[10%] z-[3]">
                 <h1 className="animate-hero-text [font-family:'Inter',Helvetica] font-light italic text-5xl sm:text-6xl leading-[0.95] [text-shadow:2px_2px_15px_rgba(255,255,255,0.95),0_0_25px_rgba(255,255,255,0.8),-2px_-2px_15px_rgba(255,255,255,0.95)]">
                   I&apos;M <br /> AKBAR
                 </h1>
               </div>
 
               {/* Bottom Left: Description */}
-              <div className="absolute left-[6%] bottom-[3%] z-[3] max-w-[50%] sm:max-w-[280px]">
+              <div className="absolute left-[6%] bottom-[16%] z-[3] max-w-[80%] sm:max-w-[280px]">
                 <p
-                  className="animate-hero-text [font-family:'Inter',Helvetica] font-normal text-black text-[12px] sm:text-[14px] leading-relaxed [text-shadow:1px_1px_10px_rgba(255,255,255,0.95),0_0_20px_rgba(255,255,255,0.8),-1px_-1px_10px_rgba(255,255,255,0.95)]"
+                  className="animate-hero-text [font-family:'Inter',Helvetica] font-normal text-black text-[16px] sm:text-[16px] leading-relaxed [text-shadow:1px_1px_10px_rgba(255,255,255,0.95),0_0_20px_rgba(255,255,255,0.8),-1px_-1px_10px_rgba(255,255,255,0.95)]"
                   style={{ animationDelay: "0.3s" }}
                 >
                   Hello, I&apos;m Handika Akbar, a Web and UI/UX Designer From
@@ -420,9 +420,9 @@ export const Desktop = (): JSX.Element => {
               </div>
 
               {/* Bottom Right: Role */}
-              <div className="absolute right-[5%] bottom-[30%] z-[3] text-right">
+              <div className="absolute right-[5%] bottom-[35%] z-[3] text-right">
                 <h2
-                  className="animate-hero-text [font-family:'Inter',Helvetica] font-bold text-3xl sm:text-4xl leading-tight [text-shadow:2px_2px_15px_rgba(255,255,255,0.95),0_0_25px_rgba(255,255,255,0.8),-2px_-2px_15px_rgba(255,255,255,0.95)]"
+                  className="animate-hero-text [font-family:'Inter',Helvetica] font-bold text-3xl sm:text-4xl leading-tight [text-shadow:2px_2px_15px_rgba(255,255,255,0.50),0_0_25px_rgba(255,255,255,0.8),-2px_-2px_15px_rgba(255,255,255,0.95)]"
                   style={{ animationDelay: "0.5s" }}
                 >
                   WEB<br />UI/UX<br />DESIGNER
@@ -825,14 +825,14 @@ export const Desktop = (): JSX.Element => {
           }}
           className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 mb-8 lg:mb-6 bg-green-500"
         />
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 ">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-row items-center justify-between gap-2 sm:gap-4 flex-wrap">
           <a
             href="#home"
-            className="[font-family:'Inter',Helvetica] font-medium italic text-lg text-black/70 hover:text-green-700 transition-colors duration-300"
+            className="[font-family:'Inter',Helvetica] font-medium italic text-base sm:text-lg text-black/70 hover:text-green-700 transition-colors duration-300"
           >
             Handika Akbar
           </a>
-          <p className="[font-family:'Inter',Helvetica] font-normal text-black/40 text-sm">
+          <p className="[font-family:'Inter',Helvetica] font-normal text-black/40 text-xs sm:text-sm">
             &copy; {new Date().getFullYear()} Handika Akbar. All rights
             reserved.
           </p>
